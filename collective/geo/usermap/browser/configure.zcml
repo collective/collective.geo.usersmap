@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.geo.usermap">
+
+  <browser:page
+      name="kmlusers-layer"
+      for="*"
+      template="kmlusers_layer.pt"
+      permission="zope.Public"
+      />
+
+
+  <browser:page
+      for="*"
+      name="usersmap"
+      class=".kmlusers_view.KmlUsersView"
+      layer = "..interfaces.IThemeSpecific"
+      permission="zope2.View"
+      />
+
+</configure>

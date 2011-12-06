@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.geo.usermap">
+
+  <include package="plone.browserlayer" />
+  <include package="collective.geo.mapwidget" />
+  <include package=".browser" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Collective Geo Usermap"
+      directory="profiles/default"
+      description='Extension profile for Collective Geo Usermap'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>
