@@ -12,6 +12,8 @@ class UserMapFixture(PloneSandboxLayer):
         # pylint: disable=W0613
         import collective.geo.usermap
         self.loadZCML(package=collective.geo.usermap)
+        self.loadZCML(name="overrides.zcml",
+                    package=collective.geo.usermap.tests)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'collective.geo.usermap:default')
