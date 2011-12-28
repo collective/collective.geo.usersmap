@@ -1,11 +1,12 @@
 from plone.memoize.instance import memoizedproperty
 from collective.geo.mapwidget.maplayers import MapLayer
+from collective.geo.mapwidget.browser.widget import MapLayers
 
 
 class KMLMapLayer(MapLayer):
     """map layer see: collective.geo.mapwidget
     """
-    name = 'kmlusers'
+    name = 'usersmap'
 
     @memoizedproperty
     def jsfactory(self):
@@ -18,3 +19,13 @@ class KMLMapLayer(MapLayer):
         template = self.context.restrictedTraverse('%s-layer' % self.name)()
         return template % (title,
                            context_url)
+
+
+class KMLMapLayers(MapLayers):
+    """Create all layers for IUsersMapView.
+    """
+
+    def layers(self):
+        layers = super(KMLMapLayers, self).layers()
+        layers.append(KMLMapLayer(context=self.context))
+        return layers

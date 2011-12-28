@@ -5,7 +5,7 @@
     i18n_domain="collective.geo.usermap">
 
   <include package="plone.browserlayer" />
-  <include package="collective.geo.mapwidget" />
+  <include package="collective.geo.bundle" />
   <include package=".browser" />
 
   <genericsetup:registerProfile

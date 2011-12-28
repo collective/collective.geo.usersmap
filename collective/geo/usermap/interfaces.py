@@ -7,6 +7,6 @@ class IThemeSpecific(IDefaultPloneLayer):
     """
 
 
-class IKMLUsersView(Interface):
-    """Marker interface for KMLUsersView
+class IUsersMapView(Interface):
+    """Marker interface for UsersMapView
     """

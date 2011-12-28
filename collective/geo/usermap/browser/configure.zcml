@@ -4,19 +4,37 @@
     i18n_domain="collective.geo.usermap">
 
   <browser:page
-      name="kmlusers-layer"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="usersmap.kml"
+      class=".usersmap_view.UsersMapKMLView"
+      template="usersmap_kml.pt"
+      layer = "..interfaces.IThemeSpecific"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="usersmap-layer"
       for="*"
-      template="kmlusers_layer.pt"
+      template="usersmap_layer.pt"
+      layer = "..interfaces.IThemeSpecific"
       permission="zope.Public"
       />
 
-
   <browser:page
-      for="*"
-      name="usersmap"
-      class=".kmlusers_view.KmlUsersView"
+      for="Products.CMFCore.interfaces._content.IFolderish"
+      name="usersmap_view"
+      class=".usersmap_view.UsersMapView"
+      template="usersmap_view.pt"
       layer = "..interfaces.IThemeSpecific"
       permission="zope2.View"
+      />
+
+  <adapter
+      for="..interfaces.IUsersMapView
+           zope.interface.Interface
+           zope.interface.Interface
+           zope.interface.Interface"
+      factory=".maplayer.KMLMapLayers"
       />
 
 </configure>
