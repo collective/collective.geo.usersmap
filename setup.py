@@ -27,10 +27,11 @@ setup(name='collective.geo.usermap',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'collective.geo.mapwidget',
+          'collective.geo.bundle',
       ],
       extras_require={
         'tests': [
+            'lxml',
             'plone.app.testing',
         ],
       },
