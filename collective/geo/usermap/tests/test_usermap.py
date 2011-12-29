@@ -9,21 +9,13 @@ from Products.CMFPlone.utils import getToolByName
 from collective.geo.geographer.interfaces import IGeoCoder
 
 from layers import INTEGRATION_TESTING
+from config import DEFAULT_MAP_TITLE
+from config import DEFAULT_MAP_DESCRIPTION
+from config import USERS
+from config import USER_DESCRIPTION
+
 from ..interfaces import IThemeSpecific
 from ..utils import coordinate_transform
-
-
-_USERS = [('user_1', 'User 1', 'Torino'),
-    ('user_2', 'User 2', 'Genova'),
-    ('user_3', 'User 3', 'Torino'),
-    ('user_4', 'User 4', 'Torino'),
-    ('user_5', 'User 5', 'Civitanova Marche, Italia'),
-    ('user_6', 'User 6 - àèìòù', 'Milan')
-]
-
-_DESCR = """Lorem ipsum dolor sit amet, consectetur adipiscing
-elit. Cras eleifend elit quis tellus auctor ut
-viverra erat faucibus."""
 
 
 class TestKml(unittest.TestCase):
@@ -38,7 +30,7 @@ class TestKml(unittest.TestCase):
 
         # add some users
         self.users = [self._add_user(username, fullname, location) \
-                        for username, fullname, location in _USERS]
+                        for username, fullname, location in USERS]
 
         # mark request
         directlyProvides(self.request, IThemeSpecific)
@@ -48,7 +40,7 @@ class TestKml(unittest.TestCase):
         user = self.regtool.addMember(_username, _username)
         user.setMemberProperties({'fullname': fullname,
                             'location': location,
-                            'description': _DESCR})
+                            'description': USER_DESCRIPTION})
         return user
 
     def test_users_location(self):
@@ -67,11 +59,11 @@ class TestKml(unittest.TestCase):
         kml_view = queryMultiAdapter((self.portal, self.request),
                                                 name='usersmap.kml')
         data = [i for i in kml_view.get_users()]
-        self.assertEquals(len(data), len(_USERS))
+        self.assertEquals(len(data), len(USERS))
 
         for el in data:
-            self.assertTrue(el['fullname'] in [i[1] for i in _USERS])
-            self.assertEquals(el['description'], _DESCR)
+            self.assertTrue(el['fullname'] in [i[1] for i in USERS])
+            self.assertTrue(USER_DESCRIPTION in el['description'])
 
     def test_usermap_view(self):
         kml_view = queryMultiAdapter((self.portal, self.request),
@@ -79,7 +71,9 @@ class TestKml(unittest.TestCase):
 
         root = objectify.fromstring(kml_view().encode('utf8'))
         document = root.Document
-        self.assertEquals(document.name, 'Plone users')
+        self.assertEquals(document.name, DEFAULT_MAP_TITLE)
+        self.assertEquals(document.description,
+                    "<![CDATA[%s]]>" % DEFAULT_MAP_DESCRIPTION)
         self.assertTrue(hasattr(document, 'Style'))
 
         kml_style = root.Document.Style
@@ -87,7 +81,7 @@ class TestKml(unittest.TestCase):
         self.assertTrue(hasattr(kml_style, 'IconStyle'))
 
         placemarks = [i for i in root.Document.Placemark]
-        self.assertEquals(len(placemarks), len(_USERS))
+        self.assertEquals(len(placemarks), len(USERS))
 
         attrs = ['name', 'description', 'styleUrl', 'Point']
         for el in placemarks:
@@ -97,7 +91,7 @@ class TestKml(unittest.TestCase):
             kml_username = getattr(el, 'name')
             if kml_username:
                 self.assertTrue(kml_username.text.encode('utf8') \
-                                            in [i[1] for i in _USERS])
+                                            in [i[1] for i in USERS])
 
 
 def test_suite():

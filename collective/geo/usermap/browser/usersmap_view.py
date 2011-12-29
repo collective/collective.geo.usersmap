@@ -1,13 +1,16 @@
 from time import time
 
 from zope.interface import implements
+from zope.component import getUtility
 from Products.Five import BrowserView
 from Products.CMFPlone.utils import getToolByName
 
 from plone.memoize import ram
+from plone.registry.interfaces import IRegistry
 from collective.geo.geographer.interfaces import IGeoCoder
 
 from ..interfaces import IUsersMapView
+from ..interfaces import IUserMapPreferences
 from ..utils import coordinate_transform
 
 
@@ -17,16 +20,38 @@ dir="ltr">%s</div>]]>
 """
 
 
-class UsersMapView(BrowserView):
+class UserMapMixin(BrowserView):
+
+    @property
+    def portal_registry(self):
+        return getUtility(IRegistry)
+
+    @property
+    def usermap_config(self):
+        return self.portal_registry.forInterface(IUserMapPreferences)
+
+    @property
+    def title(self):
+        return self.usermap_config.title
+
+    @property
+    def description(self):
+        return self.usermap_config.description
+
+
+class UsersMapView(UserMapMixin):
     """Kml Users Map View
     """
-
     implements(IUsersMapView)
 
 
-class UsersMapKMLView(BrowserView):
+class UsersMapKMLView(UserMapMixin):
 
     _user_properties = ['fullname', 'description']
+
+    @property
+    def description(self):
+        return "<![CDATA[%s]]>" % self.usermap_config.description
 
     @property
     def geocoder(self):

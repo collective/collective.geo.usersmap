@@ -7,12 +7,8 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.geo.usermap">
 <Document>
-  <name>Plone users</name>
-  <description><![CDATA[La mappa degli utenti italiani, tutte quelle persone che per passione o lavoro si occupano o utilizzano Plone in Italia.
-
-http://www.plone.it/partecipa
-
-]]></description>
+  <name tal:content="view/title">usermap</name>
+  <description tal:content="view/description">description</description>
   <Style id="manicon">
     <IconStyle>
       <Icon>

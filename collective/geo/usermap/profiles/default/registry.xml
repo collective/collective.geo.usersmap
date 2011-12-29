@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<registry>
+  <records interface="collective.geo.usermap.interfaces.IUserMapPreferences">
+    <value key="title">Users Map</value>
+    <value key="description">This map displays locations of the portal users</value>
+  </records>
+</registry>

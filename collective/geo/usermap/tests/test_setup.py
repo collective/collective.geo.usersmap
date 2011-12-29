@@ -4,10 +4,17 @@ import unittest2 as unittest
 from zope.interface import directlyProvides
 from zope.interface import Interface
 from zope.component import queryMultiAdapter
+from zope.component import getUtility
+
 from Products.CMFPlone.utils import getToolByName
+from plone.registry.interfaces import IRegistry
 
 from layers import INTEGRATION_TESTING
+from config import DEFAULT_MAP_TITLE
+from config import DEFAULT_MAP_DESCRIPTION
+
 from ..interfaces import IThemeSpecific
+from ..interfaces import IUserMapPreferences
 
 
 class TestSetup(unittest.TestCase):
@@ -17,7 +24,7 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        # mark request
+        # marking the request
         directlyProvides(self.request, IThemeSpecific)
 
     def test_setup(self):
@@ -40,6 +47,13 @@ class TestSetup(unittest.TestCase):
         map_layers = queryMultiAdapter(
                 (user_map_view, Interface, self.portal, Interface))
         self.assertTrue(u'usersmap' in [i.name for i in map_layers.layers()])
+
+    def test_preferences(self):
+        registry = getUtility(IRegistry)
+        props = registry.forInterface(IUserMapPreferences)
+
+        self.assertEquals(props.title, DEFAULT_MAP_TITLE)
+        self.assertEquals(props.description, DEFAULT_MAP_DESCRIPTION)
 
 
 def test_suite():
