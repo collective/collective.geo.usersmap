@@ -11,6 +11,12 @@ from ..interfaces import IUsersMapView
 from ..utils import coordinate_transform
 
 
+DESC_TEMPLATE = """<![CDATA[<div
+class='user-description'
+dir="ltr">%s</div>]]>
+"""
+
+
 class UsersMapView(BrowserView):
     """Kml Users Map View
     """
@@ -40,17 +46,28 @@ class UsersMapKMLView(BrowserView):
         """
         membership = getToolByName(self.context, 'portal_membership')
         unique_coordinate = []
+        users = []
         for memberId in membership.listMemberIds():
             member = membership.getMemberById(memberId)
             location = member.getProperty('location')
-            if location:
-                geo_data = self.geocoder.retrieve(location)
-                if geo_data:
-                    latitude, longitude = coordinate_transform(
-                                                geo_data[0][1],
-                                                unique_coordinate)
-                    user = {'location':
-                                "%r,%r,0.000000" % (longitude, latitude)}
-                    for prop in self._user_properties:
-                        user[prop] = member.getProperty(prop)
-                    yield user
+            if not location:
+                continue
+
+            geo_data = self.geocoder.retrieve(location)
+            if not geo_data:
+                continue
+
+            latitude, longitude = coordinate_transform(
+                                        geo_data[0][1],
+                                        unique_coordinate)
+            user = {'location':
+                        "%r,%r,0.000000" % (longitude, latitude)}
+            for prop in self._user_properties:
+                if prop == 'description':
+                    user[prop] = DESC_TEMPLATE % \
+                                 member.getProperty(prop)
+                else:
+                    user[prop] = member.getProperty(prop)
+            # yield user -- doesn't work with memoize
+            users.append(user)
+        return users
