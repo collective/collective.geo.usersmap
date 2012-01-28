@@ -3,14 +3,13 @@ from time import time
 from zope.interface import implements
 from zope.component import getUtility
 from Products.Five import BrowserView
-from Products.CMFPlone.utils import getToolByName
 
 from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
-from collective.geo.geographer.interfaces import IGeoCoder
 
 from ..interfaces import IUsersMapView
 from ..interfaces import IUserMapPreferences
+from ..interfaces import IUserCoordinates
 from ..utils import coordinate_transform
 
 
@@ -54,8 +53,8 @@ class UsersMapKMLView(UserMapMixin):
         return "<![CDATA[%s]]>" % self.usermap_config.description
 
     @property
-    def geocoder(self):
-        return IGeoCoder(self.context)
+    def user_coords_tool(self):
+        return getUtility(IUserCoordinates)
 
     # caching for two hours (?)
     @ram.cache(lambda *args: time() // (120 * 60))
@@ -69,30 +68,23 @@ class UsersMapKMLView(UserMapMixin):
         Each element of this list is a dictionary that contains three keys:
         location, fullname, description
         """
-        membership = getToolByName(self.context, 'portal_membership')
         unique_coordinate = []
         users = []
-        for memberId in membership.listMemberIds():
-            member = membership.getMemberById(memberId)
-            location = member.getProperty('location')
-            if not location:
-                continue
-
-            geo_data = self.geocoder.retrieve(location)
-            if not geo_data:
-                continue
-
+        for user_id in self.user_coords_tool:
+            member_data = self.user_coords_tool.get(user_id)
             latitude, longitude = coordinate_transform(
-                                        geo_data[0][1],
+                                        member_data.get('coordinates'),
                                         unique_coordinate)
             user = {'location':
                         "%r,%r,0.000000" % (longitude, latitude)}
+
             for prop in self._user_properties:
                 if prop == 'description':
                     user[prop] = DESC_TEMPLATE % \
-                                 member.getProperty(prop)
+                                 member_data.get(prop)
                 else:
-                    user[prop] = member.getProperty(prop)
+                    user[prop] = member_data.get(prop)
             # yield user -- doesn't work with memoize
             users.append(user)
+
         return users
