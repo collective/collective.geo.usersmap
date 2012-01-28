@@ -16,4 +16,10 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+
+  <subscriber
+      for="plone.app.controlpanel.interfaces.IConfigurationChangedEvent"
+      handler=".subscribers.notify_user_preferences_changed"
+      />
+
 </configure>

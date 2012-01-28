@@ -22,11 +22,6 @@ class IUserMapPreferences(Interface):
     description = schema.Text(title=_(u"Map Description"))
 
 
-class IEnhancedUserDataSchema(IUserDataSchema):
-    """ Use all the fields from the default user data schema, and add various
-    extra fields.
+class IUserCoordinates(Interface):
+    """Marker interface to UserCoortinate utility
     """
-    coordinates = schema.TextLine(
-        title=_(u'coordinates'),
-        required=False,
-        )

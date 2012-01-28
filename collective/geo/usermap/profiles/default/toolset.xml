@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<tool-setup>
+    <required
+        tool_id="portal_userscoordinates"
+        class="collective.geo.usermap.registry.UserCoordinates"
+        />
+</tool-setup>

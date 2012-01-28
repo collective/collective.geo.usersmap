@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <componentregistry>
   <utilities>
+  <utility
+  	interface="collective.geo.usermap.interfaces.IUserCoordinates"
+  	object="portal_userscoordinates"
+  />
   </utilities>
 </componentregistry>
