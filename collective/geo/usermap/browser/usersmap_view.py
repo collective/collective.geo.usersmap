@@ -81,9 +81,9 @@ class UsersMapKMLView(UserMapMixin):
             for prop in self._user_properties:
                 if prop == 'description':
                     user[prop] = DESC_TEMPLATE % \
-                                 member_data.get(prop)
+                                 member_data.get(prop, '')
                 else:
-                    user[prop] = member_data.get(prop)
+                    user[prop] = member_data.get(prop, '')
             # yield user -- doesn't work with memoize
             users.append(user)
 
