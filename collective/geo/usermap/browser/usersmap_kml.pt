@@ -18,10 +18,12 @@
   </Style>
   <Placemark tal:repeat="placemark view/get_users">
     <name tal:content="placemark/fullname">User name</name>
-    <description tal:content="structure placemark/description">description</description>
+    <description
+        tal:content="structure placemark/description">description</description>
     <styleUrl>#manicon</styleUrl>
     <Point>
-      <coordinates tal:content="placemark/location">11.550751,44.850513,0.000000</coordinates>
+      <coordinates
+          tal:content="placemark/location">11.550751,44.850513,0.000000</coordinates>
     </Point>
   </Placemark>
 </Document>
