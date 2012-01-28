@@ -1,6 +1,5 @@
 from zope import schema
 from zope.interface import Interface
-from plone.app.users.userdataschema import IUserDataSchema
 from plone.theme.interfaces import IDefaultPloneLayer
 from collective.geo.usermap import _
 
