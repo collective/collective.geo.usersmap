@@ -83,8 +83,7 @@ class TestKml(unittest.TestCase):
 
         for el in data:
             self.assertTrue(el['fullname'] in [i[1] for i in USERS])
-            # TODO: insert description
-            # self.assertTrue(USER_DESCRIPTION in el['description'])
+            self.assertTrue(USER_DESCRIPTION in el['description'])
 
     def test_usermap_view(self):
         kml_view = queryMultiAdapter((self.portal, self.request),
@@ -93,9 +92,8 @@ class TestKml(unittest.TestCase):
         root = objectify.fromstring(kml_view().encode('utf8'))
         document = root.Document
         self.assertEquals(document.name, DEFAULT_MAP_TITLE)
-        # TODO: insert description
-        # self.assertEquals(document.description,
-        #             "<![CDATA[%s]]>" % DEFAULT_MAP_DESCRIPTION)
+        self.assertEquals(document.description,
+                    "<![CDATA[%s]]>" % DEFAULT_MAP_DESCRIPTION)
         self.assertTrue(hasattr(document, 'Style'))
 
         kml_style = root.Document.Style

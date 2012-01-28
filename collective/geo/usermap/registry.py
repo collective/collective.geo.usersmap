@@ -16,10 +16,12 @@ class UserData(PersistentMapping):
     the kml file which contains the coordinates of users
     """
 
-    def __init__(self, userid, fullname, location, coordinates):
+    def __init__(self, userid, fullname,
+                    description, location, coordinates):
         super(UserData, self).__init__()
         self.update({'userid': userid,
                 'fullname': fullname,
+                'description': description,
                 'location': location,
                 'coordinates': coordinates,
             })
@@ -64,18 +66,20 @@ class UserCoordinates(SimpleItem):
     def get(self, name, default=None):
         return self.records.get(name, default)
 
-    def add(self, userid, fullname, location):
+    def add(self, userid, fullname, description, location):
         if userid in self.records:
             raise ValueError
 
         coordinates = self.get_coordinates(location)
-        usr_data = UserData(userid, fullname, location, coordinates)
+        usr_data = UserData(userid, fullname,
+                        description, location, coordinates)
         self.records[userid] = usr_data
 
-    def update(self, userid, fullname, location):
+    def update(self, userid, fullname, description, location):
         if userid in self.records:
             usr_data = self.get(userid)
             usr_data['fullname'] = fullname
+            usr_data['description'] = description
             if usr_data['location'] != location:
                 usr_data['location'] = location
                 usr_data['coordinates'] = self.get_coordinates(location)

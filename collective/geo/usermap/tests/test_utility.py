@@ -31,6 +31,7 @@ class TestUtility(unittest.TestCase):
         tool = UserCoordinates(id='portal_userscoordinates')
         data = {'userid': 'giorgio',
                 'fullname': "Giorgio Borelli",
+                'description': 'test description',
                 'location': 'Torino'}
         tool.add(**data)
         ud = tool.get(data['userid'])
@@ -44,6 +45,7 @@ class TestUtility(unittest.TestCase):
         tool = UserCoordinates(id='portal_userscoordinates')
         data = {'userid': 'giorgio',
                 'fullname': "Giorgio Borelli",
+                'description': 'test description',
                 'location': 'Torino'}
 
         tool.add(**data)

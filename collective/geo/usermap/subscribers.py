@@ -14,7 +14,7 @@ def notify_user_preferences_changed(event):
         return
 
     tool = getUtility(IUserCoordinates)
-    props = ['fullname', 'location']
+    props = ['fullname', 'location', 'description']
     data = {}
     for el in props:
         data[el] = form_data.get(el, '')
