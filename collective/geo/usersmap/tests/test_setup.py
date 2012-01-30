@@ -14,7 +14,7 @@ from config import DEFAULT_MAP_TITLE
 from config import DEFAULT_MAP_DESCRIPTION
 
 from ..interfaces import IThemeSpecific
-from ..interfaces import IUserMapPreferences
+from ..interfaces import IUsersMapPreferences
 
 
 class TestSetup(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestSetup(unittest.TestCase):
                         (self.portal, self.request),
                                 name='usersmap-layer'), None)
 
-    def test_usermap_view(self):
+    def test_usersmap_view(self):
         self.assertNotEquals(queryMultiAdapter(
                         (self.portal, self.request),
                                 name='usersmap_view'), None)
@@ -50,7 +50,7 @@ class TestSetup(unittest.TestCase):
 
     def test_preferences(self):
         registry = getUtility(IRegistry)
-        props = registry.forInterface(IUserMapPreferences)
+        props = registry.forInterface(IUsersMapPreferences)
 
         self.assertEquals(props.title, DEFAULT_MAP_TITLE)
         self.assertEquals(props.description, DEFAULT_MAP_DESCRIPTION)

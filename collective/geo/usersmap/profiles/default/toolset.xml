@@ -2,6 +2,6 @@
 <tool-setup>
     <required
         tool_id="portal_userscoordinates"
-        class="collective.geo.usermap.registry.UserCoordinates"
+        class="collective.geo.usersmap.registry.UsersCoordinates"
         />
 </tool-setup>

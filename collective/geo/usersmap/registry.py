@@ -4,9 +4,10 @@ from OFS.SimpleItem import SimpleItem
 from BTrees.OOBTree import OOBTree
 
 from zope.interface import implements
+from zope.component import getUtility
 
 from collective.geo.geographer.interfaces import IGeoCoder
-from collective.geo.usermap.interfaces import IUserCoordinates
+from collective.geo.usersmap.interfaces import IUsersCoordinates
 
 
 class UserData(PersistentMapping):
@@ -27,11 +28,11 @@ class UserData(PersistentMapping):
             })
 
 
-class UserCoordinates(SimpleItem):
-    implements(IUserCoordinates)
+class UsersCoordinates(SimpleItem):
+    implements(IUsersCoordinates)
 
     def __init__(self, id, title=None):
-        super(UserCoordinates, self).__init__()
+        super(UsersCoordinates, self).__init__()
         self.id = id
         self.title = title
         self._records = OOBTree()
@@ -89,7 +90,7 @@ class UserCoordinates(SimpleItem):
 
     @property
     def geocoder(self):
-        return IGeoCoder(None)
+        return getUtility(IGeoCoder)
 
     def get_coordinates(self, location):
         """get coordinates with IGeoCoder and return

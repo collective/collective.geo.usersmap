@@ -3,9 +3,9 @@ import os
 
 version = '1.0'
 
-setup(name='collective.geo.usermap',
+setup(name='collective.geo.usersmap',
       version=version,
-      description="Collective Geo Usermap",
+      description="Collective Geo Users' map",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from

@@ -1,5 +1,5 @@
 from geopy.geocoders.google import GQueryError
-from collective.geo.geographer.geocoder import GeoCoder
+from collective.geo.geographer.geocoder import GeoCoderUtility
 
 
 DUMMY_DATA = [{'address': "Torino",
@@ -13,7 +13,7 @@ DUMMY_DATA = [{'address': "Torino",
              ]
 
 
-class DummyGeoCoder(GeoCoder):
+class DummyGeoCoder(GeoCoderUtility):
 
     def retrieve(self, address=None):
         for item in DUMMY_DATA:

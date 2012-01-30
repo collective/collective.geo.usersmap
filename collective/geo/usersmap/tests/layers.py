@@ -5,26 +5,26 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting, FunctionalTesting
 
 
-class UserMapFixture(PloneSandboxLayer):
+class UsersMapFixture(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE, )
 
     def setUpZope(self, app, configurationContext):
         # pylint: disable=W0613
-        import collective.geo.usermap
-        self.loadZCML(package=collective.geo.usermap)
+        import collective.geo.usersmap
+        self.loadZCML(package=collective.geo.usersmap)
         self.loadZCML(name="overrides.zcml",
-                    package=collective.geo.usermap.tests)
+                    package=collective.geo.usersmap.tests)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'collective.geo.usermap:default')
+        applyProfile(portal, 'collective.geo.usersmap:default')
 
 
-BASE_FIXTURE = UserMapFixture()
+BASE_FIXTURE = UsersMapFixture()
 
 INTEGRATION_TESTING = IntegrationTesting(
                                     bases=(BASE_FIXTURE, ),
-                                    name="UserMapFixture:Integration")
+                                    name="UsersMapFixture:Integration")
 
 FUNCTIONAL_TESTING = FunctionalTesting(
                                     bases=(BASE_FIXTURE, ),
-                                    name="Fixture:Functional")
+                                    name="UsersMapFixture:Functional")

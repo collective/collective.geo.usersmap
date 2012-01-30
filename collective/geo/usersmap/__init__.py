@@ -1,2 +1,2 @@
 from zope.i18nmessageid import MessageFactory
-_ = MessageFactory("collective.geo.usermap")
+_ = MessageFactory("collective.geo.usersmap")

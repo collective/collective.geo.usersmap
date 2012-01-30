@@ -1,0 +1,10 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope">
+
+  <utility
+    factory='.adapters.DummyGeoCoder'
+    provides="collective.geo.geographer.interfaces.IGeoCoder"
+  />
+
+</configure>
+

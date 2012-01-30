@@ -38,7 +38,7 @@ class TestUtility(unittest.TestCase):
         self.assertIsNotNone(ud)
         for k, v in data.items():
             self.assertEquals(v, ud.get(k))
-        # see: c.geo.usermap.tests.adapters DUMMY_DATA
+        # see: c.geo.usersmap.tests.adapters DUMMY_DATA
         self.assertEquals(ud.get('coordinates'), (1.1, 2.1))
 
     def test_update_user(self):
@@ -59,7 +59,7 @@ class TestUtility(unittest.TestCase):
         self.assertIsNotNone(ud)
         for k, v in new_data.items():
             self.assertEquals(v, ud.get(k))
-        # see: c.geo.usermap.tests.adapters DUMMY_DATA
+        # see: c.geo.usersmap.tests.adapters DUMMY_DATA
         self.assertEquals(ud.get('coordinates'), (7.1, 8.1))
 
 

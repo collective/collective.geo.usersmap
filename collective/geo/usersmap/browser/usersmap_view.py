@@ -8,7 +8,7 @@ from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 
 from ..interfaces import IUsersMapView
-from ..interfaces import IUserMapPreferences
+from ..interfaces import IUsersMapPreferences
 from ..interfaces import IUserCoordinates
 from ..utils import coordinate_transform
 
@@ -19,38 +19,38 @@ dir="ltr">%s</div>]]>
 """
 
 
-class UserMapMixin(BrowserView):
+class UsersMapMixin(BrowserView):
 
     @property
     def portal_registry(self):
         return getUtility(IRegistry)
 
     @property
-    def usermap_config(self):
-        return self.portal_registry.forInterface(IUserMapPreferences)
+    def usersmap_config(self):
+        return self.portal_registry.forInterface(IUsersMapPreferences)
 
     @property
     def title(self):
-        return self.usermap_config.title
+        return self.usersmap_config.title
 
     @property
     def description(self):
-        return self.usermap_config.description
+        return self.usersmap_config.description
 
 
-class UsersMapView(UserMapMixin):
+class UsersMapView(UsersMapMixin):
     """Kml Users Map View
     """
     implements(IUsersMapView)
 
 
-class UsersMapKMLView(UserMapMixin):
+class UsersMapKMLView(UsersMapMixin):
 
     _user_properties = ['fullname', 'description']
 
     @property
     def description(self):
-        return "<![CDATA[%s]]>" % self.usermap_config.description
+        return "<![CDATA[%s]]>" % self.usersmap_config.description
 
     @property
     def user_coords_tool(self):

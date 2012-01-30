@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="collective.geo.usermap">
+    i18n_domain="collective.geo.usersmap">
 
   <browser:page
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"

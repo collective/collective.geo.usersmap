@@ -5,6 +5,7 @@ from lxml import objectify
 from zope.interface import directlyProvides
 from zope.interface import implements
 from zope.component import queryMultiAdapter
+from zope.component import getUtility
 
 from zope.event import notify
 
@@ -64,7 +65,7 @@ class TestKml(unittest.TestCase):
         return user
 
     def test_users_location(self):
-        geo = IGeoCoder(self.portal)
+        geo = getUtility(IGeoCoder)
         coords = [geo.retrieve(i.getProperty('location')) for i in self.users]
         unique_coordinate = []
         #TODO: test unique coordinates
@@ -75,7 +76,7 @@ class TestKml(unittest.TestCase):
         self.assertEquals(len(self.users), len(unique_coordinate))
         self.assertEquals(len(self.users), len(processed_coords))
 
-    def test_usermap_users(self):
+    def test_usersmap_users(self):
         kml_view = queryMultiAdapter((self.portal, self.request),
                                                 name='usersmap.kml')
         data = [i for i in kml_view.get_users()]
@@ -85,7 +86,7 @@ class TestKml(unittest.TestCase):
             self.assertTrue(el['fullname'] in [i[1] for i in USERS])
             self.assertTrue(USER_DESCRIPTION in el['description'])
 
-    def test_usermap_view(self):
+    def test_usersmap_view(self):
         kml_view = queryMultiAdapter((self.portal, self.request),
                                                 name='usersmap.kml')
 
