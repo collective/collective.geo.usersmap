@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-DEFAULT_MAP_TITLE = u'Users Map'
+DEFAULT_MAP_TITLE = u"Users' Map"
 DEFAULT_MAP_DESCRIPTION = u'This map displays locations of the portal users'
 USERS = [('user_1', 'User 1', 'Torino'),
     ('user_2', 'User 2', 'Genova'),

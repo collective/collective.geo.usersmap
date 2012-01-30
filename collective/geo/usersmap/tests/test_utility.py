@@ -7,8 +7,8 @@ from zope.component import queryUtility
 from Products.CMFPlone.utils import getToolByName
 
 from ..interfaces import IThemeSpecific
-from ..interfaces import IUserCoordinates
-from ..registry import UserCoordinates
+from ..interfaces import IUsersCoordinates
+from ..registry import UsersCoordinates
 
 
 class TestUtility(unittest.TestCase):
@@ -21,14 +21,14 @@ class TestUtility(unittest.TestCase):
         directlyProvides(self.request, IThemeSpecific)
 
     def test_utility(self):
-        self.assertIsNotNone(queryUtility(IUserCoordinates))
+        self.assertIsNotNone(queryUtility(IUsersCoordinates))
 
     def test_tool(self):
         self.assertIsNotNone(
                 getToolByName(self.portal, 'portal_userscoordinates', None))
 
     def test_add_user(self):
-        tool = UserCoordinates(id='portal_userscoordinates')
+        tool = UsersCoordinates(id='portal_userscoordinates')
         data = {'userid': 'giorgio',
                 'fullname': "Giorgio Borelli",
                 'description': 'test description',
@@ -42,7 +42,7 @@ class TestUtility(unittest.TestCase):
         self.assertEquals(ud.get('coordinates'), (1.1, 2.1))
 
     def test_update_user(self):
-        tool = UserCoordinates(id='portal_userscoordinates')
+        tool = UsersCoordinates(id='portal_userscoordinates')
         data = {'userid': 'giorgio',
                 'fullname': "Giorgio Borelli",
                 'description': 'test description',

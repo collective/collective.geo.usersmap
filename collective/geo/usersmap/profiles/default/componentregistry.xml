@@ -2,7 +2,7 @@
 <componentregistry>
   <utilities>
   <utility
-  	interface="collective.geo.usersmap.interfaces.IUserCoordinates"
+  	interface="collective.geo.usersmap.interfaces.IUsersCoordinates"
   	object="portal_userscoordinates"
   />
   </utilities>

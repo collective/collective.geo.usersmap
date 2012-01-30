@@ -1,10 +1,10 @@
 from plone.app.users.browser.interfaces import IAccountPanelForm
 from zope.component import getUtility
-from interfaces import IUserCoordinates
+from interfaces import IUsersCoordinates
 
 
 def notify_user_preferences_changed(event):
-    """Insert or Update user data in IUserCoordinates tool
+    """Insert or Update user data in IUsersCoordinates tool
     """
     context = event.context
     form_data = event.data
@@ -13,7 +13,7 @@ def notify_user_preferences_changed(event):
         not userid:
         return
 
-    tool = getUtility(IUserCoordinates)
+    tool = getUtility(IUsersCoordinates)
     props = ['fullname', 'location', 'description']
     data = {}
     for el in props:

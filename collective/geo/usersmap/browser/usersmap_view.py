@@ -9,7 +9,7 @@ from plone.registry.interfaces import IRegistry
 
 from ..interfaces import IUsersMapView
 from ..interfaces import IUsersMapPreferences
-from ..interfaces import IUserCoordinates
+from ..interfaces import IUsersCoordinates
 from ..utils import coordinate_transform
 
 
@@ -54,7 +54,7 @@ class UsersMapKMLView(UsersMapMixin):
 
     @property
     def user_coords_tool(self):
-        return getUtility(IUserCoordinates)
+        return getUtility(IUsersCoordinates)
 
     # caching for two hours (?)
     @ram.cache(lambda *args: time() // (120 * 60))
