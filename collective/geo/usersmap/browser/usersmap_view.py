@@ -43,6 +43,10 @@ class UsersMapView(UsersMapMixin):
     """
     implements(IUsersMapView)
 
+    def __init__(self, context, request):
+        super(UsersMapView, self).__init__(context, request)
+        self.request.set('disable_border', True)
+
 
 class UsersMapKMLView(UsersMapMixin):
 
