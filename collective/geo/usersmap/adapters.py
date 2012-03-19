@@ -1,0 +1,49 @@
+from zope.interface import implements
+from zope.component import getUtility
+from Products.CMFCore.utils import getToolByName
+
+from plone.registry.interfaces import IRegistry
+
+from interfaces import IUserDescription
+from interfaces import IUsersMapPreferences
+
+
+class UserDescription(object):
+    implements(IUserDescription)
+
+    def __init__(self, context):
+        self.context = context
+
+    def _default_formatter(self, data):
+        return '<p>%s</p>' % data
+
+    def _format_email(self, data):
+        return '<p><a href="mailto:%s">%s</a></p>' % (data, data)
+
+    def _format_home_page(self, data):
+        return '<p><a href="%s">%s</a></p>' % (data, data)
+
+    def _format_portrait(self, user_id):
+        mtool = getToolByName(self.context, 'portal_membership')
+        portrait = mtool.getPersonalPortrait(user_id)
+        return "<img src='%s' class='map-ortrait-photo' />" % \
+                                            portrait.absolute_url()
+
+    @property
+    def user_props(self):
+        registry = getUtility(IRegistry)
+        map_preferences = registry.forInterface(IUsersMapPreferences)
+        return map_preferences.user_properties
+
+    def get_description(self, user_id, usr_data):
+        user_data = []
+        for prop in self.user_props:
+            data = usr_data.get(prop) or u''
+            formatter = getattr(self, '_format_%s' % prop,
+                                    self._default_formatter)
+            if data:
+                user_data.append(formatter(data))
+            if prop == 'portrait':
+                user_data.append(self._format_portrait(user_id))
+
+        return u'\n'.join(user_data)

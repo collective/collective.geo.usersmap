@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <registry>
-  <records interface="collective.geo.usersmap.interfaces.IUsersMapPreferences">
+  <records
+    interface="collective.geo.usersmap.interfaces.IUsersMapPreferences">
     <value key="title">Users' Map</value>
     <value key="description">This map displays locations of the portal users</value>
+    <value key="user_properties">
+        <element>description</element>
+        <element>email</element>
+    </value>
   </records>
 </registry>

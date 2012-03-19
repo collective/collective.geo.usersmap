@@ -1,7 +1,11 @@
-from Products.CMFCore.utils import getToolByName
-from plone.app.users.browser.interfaces import IAccountPanelForm
 from zope.component import getUtility
+
+from Products.CMFCore.utils import getToolByName
+from plone.registry.interfaces import IRegistry
+from plone.app.users.browser.interfaces import IAccountPanelForm
+
 from interfaces import IUsersCoordinates
+from interfaces import IUserDescription
 
 
 def notify_user_preferences_changed(event):
@@ -10,7 +14,8 @@ def notify_user_preferences_changed(event):
     context = event.context
     form_data = event.data
     userid = getattr(context, 'userid', None)
-    props = ['fullname', 'location', 'description']
+
+    props = ['fullname', 'location']
 
     if not IAccountPanelForm.providedBy(context):
         return
@@ -27,6 +32,9 @@ def notify_user_preferences_changed(event):
     data = {}
     for el in props:
         data[el] = form_data.get(el, '')
+
+    user_desc = IUserDescription(context)
+    data['description'] = user_desc.get_description(userid, form_data)
 
     if userid not in tool:
         tool.add(userid, **data)
