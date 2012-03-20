@@ -14,19 +14,27 @@ class UserDescription(object):
     def __init__(self, context):
         self.context = context
 
+    def _decode_str(self, data):
+        if isinstance(data, basestring) and \
+                            not isinstance(data, unicode):
+            data = data.decode('utf8')
+        return data
+
     def _default_formatter(self, data):
-        return '<p>%s</p>' % data
+        return u'<p>%s</p>' % self._decode_str(data)
 
     def _format_email(self, data):
-        return '<p><a href="mailto:%s">%s</a></p>' % (data, data)
+        data = self._decode_str(data)
+        return u'<p><a href="mailto:%s">%s</a></p>' % (data, data)
 
     def _format_home_page(self, data):
-        return '<p><a href="%s">%s</a></p>' % (data, data)
+        data = self._decode_str(data)
+        return u'<p><a href="%s">%s</a></p>' % (data, data)
 
     def _format_portrait(self, user_id):
         mtool = getToolByName(self.context, 'portal_membership')
         portrait = mtool.getPersonalPortrait(user_id)
-        return "<img src='%s' class='map-ortrait-photo' />" % \
+        return u"<img src='%s' class='map-ortrait-photo' />" % \
                                             portrait.absolute_url()
 
     @property
