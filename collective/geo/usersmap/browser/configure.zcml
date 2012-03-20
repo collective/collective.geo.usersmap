@@ -5,6 +5,14 @@
 
   <browser:page
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="usersmap_reindex"
+      class=".usersmap_reindex.Reindex"
+      layer = "..interfaces.IThemeSpecific"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="usersmap.kml"
       class=".usersmap_view.UsersMapKMLView"
       template="usersmap_kml.pt"
