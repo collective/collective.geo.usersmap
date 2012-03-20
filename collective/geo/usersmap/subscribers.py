@@ -1,7 +1,6 @@
 from zope.component import getUtility
 
 from Products.CMFCore.utils import getToolByName
-from plone.registry.interfaces import IRegistry
 from plone.app.users.browser.interfaces import IAccountPanelForm
 
 from interfaces import IUsersCoordinates
