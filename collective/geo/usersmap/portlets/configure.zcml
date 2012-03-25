@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <plone:portlet
+        name="collective.geo.usersmap.UsersMapPortlet"
+        interface=".usersmapportlet.IUsersMapPortlet"
+        assignment=".usersmapportlet.Assignment"
+        renderer=".usersmapportlet.Renderer"
+        addview=".usersmapportlet.AddForm"
+        editview=".usersmapportlet.EditForm"
+        view_permission="zope2.View"
+        edit_permission="zope2.View"
+    />
+</configure>

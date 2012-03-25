@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone"
+      tal:define="cgmap nocall:cgmap | nothing;
+                  mapwidgets view/@@collectivegeo-maps/mapwidgets;
+                  cgmap python:cgmap or mapwidgets[0];"
+      tal:omit-tag="">
+
+<div tal:condition="view/data/omit_border"
+    tal:attributes="class string:portlet portletUsersMap ${view/css_class}">
+    <div tal:content="structure view/transformed" />
+
+    <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
+    <div id="map" class="widget-cgmap"
+        tal:attributes="id cgmap/mapid | string:map;
+              class cgmap/klass | string:widget-cgmap;
+              style view/css_style">
+        <!--   openlayers map     -->
+    </div>
+    <script type="text/javascript"
+            tal:content="structure cgmap/layers/js | nothing"></script>
+    <script type="text/javascript"
+            tal:content="structure cgmap/js | nothing">
+            <!-- additional javascript --></script>
+    <script type="text/javascript"
+            src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
+
+</div>
+
+<dl tal:condition="not:view/data/omit_border"
+    class="portlet portletUsersMap"
+    i18n:domain="collective.geo.usersmap"
+    tal:attributes="class string:portlet portletUsersMap ${view/css_class}">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span>
+          <a class="tile"
+            tal:omit-tag="not:view/has_link"
+            tal:attributes="href view/data/more_url"
+            tal:content="view/data/header"
+          />
+        </span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd">
+      <div tal:replace="structure view/transformed" />
+
+      <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
+      <div id="map" class="widget-cgmap"
+          tal:attributes="id cgmap/mapid | string:map;
+                class cgmap/klass | string:widget-cgmap;
+                style view/css_style">
+          <!--   openlayers map     -->
+      </div>
+      <script type="text/javascript"
+              tal:content="structure cgmap/layers/js | nothing"></script>
+      <script type="text/javascript"
+              tal:content="structure cgmap/js | nothing">
+              <!-- additional javascript --></script>
+      <script type="text/javascript"
+              src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
+
+      <tal:corners condition="not:view/has_footer">
+            <span class="portletBottomLeft"></span>
+            <span class="portletBottomRight"></span>
+      </tal:corners>
+    </dd>
+
+    <dd class="portletFooter" tal:condition="view/has_footer">
+        <span class="portletBottomLeft"></span>
+        <span>
+           <a class="tile"
+              tal:omit-tag="not:view/has_link"
+              tal:attributes="href view/data/more_url"
+              tal:content="view/data/footer"
+              />
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+</dl>
+</html>
