@@ -62,6 +62,34 @@ class TestUtility(unittest.TestCase):
         # see: c.geo.usersmap.tests.adapters DUMMY_DATA
         self.assertEquals(ud.get('coordinates'), (7.1, 8.1))
 
+    def test_update_user_without_location(self):
+        tool = UsersCoordinates(id='portal_userscoordinates')
+        data = {'userid': 'giorgio',
+                'fullname': "Giorgio Borelli",
+                'description': 'test description',
+                'location': 'Torino'}
+
+        tool.add(**data)
+        new_data = {'location': '',
+                    'fullname': 'Mario Rossi',
+                    }
+        data.update(new_data)
+        tool.update(**data)
+
+        # updating user without location it will be removed from tool
+        ud = tool.get(data['userid'])
+        self.assertIsNone(ud)
+
+    def test_add_user_without_location(self):
+        tool = UsersCoordinates(id='portal_userscoordinates')
+        data = {'userid': 'giorgio',
+                'fullname': "Giorgio Borelli",
+                'description': 'test description',
+                'location': ''}
+        tool.add(**data)
+        ud = tool.get(data['userid'])
+        self.assertIsNone(ud)
+
 
 def test_suite():
     suite = unittest.TestSuite()

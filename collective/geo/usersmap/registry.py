@@ -8,6 +8,7 @@ from zope.component import getUtility
 
 from collective.geo.geographer.interfaces import IGeoCoder
 from collective.geo.usersmap.interfaces import IUsersCoordinates
+from collective.geo.usersmap.interfaces import IUserData
 
 
 class UserData(PersistentMapping):
@@ -16,6 +17,7 @@ class UserData(PersistentMapping):
     This object stores the user's properties used to create
     the kml file which contains the coordinates of users
     """
+    implements(IUserData)
 
     def __init__(self, userid, fullname,
                     description, location, coordinates):
@@ -67,17 +69,24 @@ class UsersCoordinates(SimpleItem):
     def get(self, name, default=None):
         return self.records.get(name, default)
 
-    def add(self, userid, fullname, description, location):
+    def add(self, userid, location, fullname, description):
         if userid in self.records:
             raise ValueError
+
+        if not location:
+            return None
 
         coordinates = self.get_coordinates(location)
         usr_data = UserData(userid, fullname,
                         description, location, coordinates)
         self.records[userid] = usr_data
 
-    def update(self, userid, fullname, description, location):
+    def update(self, userid, location, fullname, description):
         if userid in self.records:
+            if not location:
+                self.delete(userid)
+                return None
+
             usr_data = self.get(userid)
             usr_data['fullname'] = fullname
             usr_data['description'] = description
