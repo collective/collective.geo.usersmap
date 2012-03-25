@@ -2,7 +2,7 @@ from zope import schema
 from zope.interface import Interface
 from zope.interface import Attribute
 from plone.theme.interfaces import IDefaultPloneLayer
-from collective.geo.usersmap import _
+from collective.geo.usersmap import UsersmapMessageFactory as _
 
 
 class IThemeSpecific(IDefaultPloneLayer):
