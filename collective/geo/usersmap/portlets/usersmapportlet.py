@@ -8,6 +8,7 @@ from zope.formlib import form
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 
+from plone.portlet.static import PloneMessageFactory
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
@@ -27,15 +28,16 @@ class IUsersMapPortlet(IPortletDataProvider):
     """
 
     header = schema.TextLine(
-                    title=_(u"Portlet header"),
-                    description=_(u"Title of the rendered portlet"),
+                    title=PloneMessageFactory(u"Portlet header"),
+                    description=PloneMessageFactory(
+                                u"Title of the rendered portlet"),
                     default=_(u"Users' Map Portlet"),
                     required=True,
                 )
 
     text = schema.Text(
-        title=_(u"Text"),
-        description=_(u"The text to render"),
+        title=PloneMessageFactory(u"Text"),
+        description=PloneMessageFactory(u"The text to render"),
         required=True)
 
     height = schema.TextLine(
@@ -48,20 +50,21 @@ class IUsersMapPortlet(IPortletDataProvider):
                 )
 
     omit_border = schema.Bool(
-        title=_(u"Omit portlet border"),
-        description=_(u"Tick this box if you want to render the text above "
-                      "without the standard header, border or footer."),
+        title=PloneMessageFactory(u"Omit portlet border"),
+        description=PloneMessageFactory(
+                    u"Tick this box if you want to render the text above "
+                     "without the standard header, border or footer."),
         required=True,
         default=False)
 
     footer = schema.TextLine(
-        title=_(u"Portlet footer"),
-        description=_(u"Text to be shown in the footer"),
+        title=PloneMessageFactory(u"Portlet footer"),
+        description=PloneMessageFactory(u"Text to be shown in the footer"),
         required=False)
 
     more_url = schema.ASCIILine(
-        title=_(u"Details link"),
-        description=_(u"If given, the header and footer "
+        title=PloneMessageFactory(u"Details link"),
+        description=PloneMessageFactory(u"If given, the header and footer "
                       "will link to this URL."),
         required=False)
 

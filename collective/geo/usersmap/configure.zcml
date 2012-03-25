@@ -2,7 +2,10 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.geo.usersmap">
+
+  <i18n:registerTranslations directory="locales" />
 
   <include package="plone.browserlayer" />
   <include package="collective.geo.bundle" />
@@ -16,7 +19,6 @@
       description="Extension profile for Collective Geo Users' map"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
 
   <subscriber
       for="plone.app.controlpanel.interfaces.IConfigurationChangedEvent"

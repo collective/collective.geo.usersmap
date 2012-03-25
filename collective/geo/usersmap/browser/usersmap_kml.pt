@@ -2,10 +2,7 @@
 <kml
   xmlns="http://www.opengis.net/kml/2.2"
   xmlns:atom="http://www.w3.org/2005/Atom"
-  xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:metal="http://xml.zope.org/namespaces/metal"
-  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-  i18n:domain="collective.geo.usersmap">
+  xmlns:tal="http://xml.zope.org/namespaces/tal">
 <Document>
   <name tal:content="view/title">usersmap</name>
   <description tal:content="view/description">description</description>
