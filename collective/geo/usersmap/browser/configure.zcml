@@ -3,6 +3,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.geo.usersmap">
 
+  <browser:resource
+      name="man.png"
+      image="man.png"
+      layer="..interfaces.IThemeSpecific"
+      />
+
   <browser:page
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="usersmap_reindex"

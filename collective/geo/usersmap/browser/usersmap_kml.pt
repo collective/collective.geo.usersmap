@@ -9,7 +9,8 @@
   <Style id="manicon">
     <IconStyle>
       <Icon>
-        <href>http://maps.gstatic.com/intl/en_ALL/mapfiles/ms/micons/man.png</href>
+        <href tal:content="string:${context/absolute_url}/++resource++man.png">
+          imgurl</href>
       </Icon>
     </IconStyle>
   </Style>
