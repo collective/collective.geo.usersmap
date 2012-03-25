@@ -34,7 +34,7 @@ class UserDescription(object):
     def _format_portrait(self, user_id):
         mtool = getToolByName(self.context, 'portal_membership')
         portrait = mtool.getPersonalPortrait(user_id)
-        return u"<img src='%s' class='map-ortrait-photo' />" % \
+        return u"<img src='%s' class='map-portrait-photo' />" % \
                                             portrait.absolute_url()
 
     @property

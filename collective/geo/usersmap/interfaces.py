@@ -38,7 +38,6 @@ class IUsersCoordinates(Interface):
     """Marker interface for UsersCoortinates registry
     """
 
-
     geocoder = Attribute("Return a geocoder utility")
 
     def records(self):
