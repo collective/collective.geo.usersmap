@@ -43,6 +43,10 @@ class UsersMapView(UsersMapMixin):
     """
     implements(IUsersMapView)
 
+    def __init__(self, context, request):
+        super(UsersMapView, self).__init__(context, request)
+        self.request.set('disable_border', True)
+
 
 class UsersMapKMLView(UsersMapMixin):
 
@@ -57,7 +61,7 @@ class UsersMapKMLView(UsersMapMixin):
         return getUtility(IUsersCoordinates)
 
     # caching for two hours (?)
-    @ram.cache(lambda *args: time() // (120 * 60))
+    # @ram.cache(lambda *args: time() // (120 * 60))
     def get_users(self):
         """This function retrieves all Plone user
         and for each user gets the coordinates from its location property.

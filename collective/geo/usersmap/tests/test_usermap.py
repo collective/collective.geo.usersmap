@@ -56,6 +56,7 @@ class TestKml(unittest.TestCase):
         user = self.regtool.addMember(_username, _username)
         data = {'fullname': fullname,
                 'location': location,
+                'email': 'test@email.it',
                 'description': USER_DESCRIPTION}
         user.setMemberProperties(data)
 

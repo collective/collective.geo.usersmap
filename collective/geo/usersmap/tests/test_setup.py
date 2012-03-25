@@ -54,6 +54,7 @@ class TestSetup(unittest.TestCase):
 
         self.assertEquals(props.title, DEFAULT_MAP_TITLE)
         self.assertEquals(props.description, DEFAULT_MAP_DESCRIPTION)
+        self.assertEquals(props.user_properties, ['description', 'email'])
 
 
 def test_suite():

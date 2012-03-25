@@ -14,14 +14,14 @@
     <div>
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-        <h1 class="documentFirstHeading">
-          La mappa dei plonisti italiani
+        <h1 class="documentFirstHeading"
+            tal:content="view/title">
+          Title
         </h1>
 
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p class="documentDescription">
-          bla bla bla
+        <p class="documentDescription"
+          tal:content="view/description">
+          Description
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
