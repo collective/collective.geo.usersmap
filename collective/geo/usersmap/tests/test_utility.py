@@ -90,6 +90,17 @@ class TestUtility(unittest.TestCase):
         ud = tool.get(data['userid'])
         self.assertIsNone(ud)
 
+    def test_add_user_with_wrong_location(self):
+        tool = UsersCoordinates(id='portal_userscoordinates')
+        data = {'userid': 'giorgio',
+                'fullname': "Giorgio Borelli",
+                'description': 'test description',
+                'location': 'No existent location'}
+
+        tool.add(**data)
+        ud = tool.get(data['userid'])
+        self.assertIsNone(ud)
+
 
 def test_suite():
     suite = unittest.TestSuite()

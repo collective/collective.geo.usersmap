@@ -1,4 +1,5 @@
 # from persistent import Persistent
+from geopy.geocoders.google import GQueryError
 from persistent.mapping import PersistentMapping
 from OFS.SimpleItem import SimpleItem
 from BTrees.OOBTree import OOBTree
@@ -77,6 +78,9 @@ class UsersCoordinates(SimpleItem):
             return None
 
         coordinates = self.get_coordinates(location)
+        if not coordinates:
+            return None
+
         usr_data = UserData(userid, fullname,
                         description, location, coordinates)
         self.records[userid] = usr_data
@@ -87,12 +91,16 @@ class UsersCoordinates(SimpleItem):
                 self.delete(userid)
                 return None
 
+            coordinates = self.get_coordinates(location)
+            if not coordinates:
+                return None
+
             usr_data = self.get(userid)
             usr_data['fullname'] = fullname
             usr_data['description'] = description
             if usr_data['location'] != location:
                 usr_data['location'] = location
-                usr_data['coordinates'] = self.get_coordinates(location)
+                usr_data['coordinates'] = coordinates
 
     def delete(self, userid):
         self.records.pop(userid)
@@ -105,7 +113,11 @@ class UsersCoordinates(SimpleItem):
         """get coordinates with IGeoCoder and return
         the first coordinates retrieved
         """
-        geo_data = self.geocoder.retrieve(location)
+        try:
+            geo_data = self.geocoder.retrieve(location)
+        except GQueryError:
+            return None
+
         if not geo_data:
             return (0.0, 0.0)
         return geo_data[0][1]
