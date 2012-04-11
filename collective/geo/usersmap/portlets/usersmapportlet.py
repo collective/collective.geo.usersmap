@@ -117,7 +117,11 @@ class Renderer(base.Renderer):
         """Use the safe_html transform to protect text output. This also
         ensures that resolve UID links are transformed into real links.
         """
+        if not self.data.text:
+            return None
+
         orig = self.data.text
+
         context = aq_inner(self.context)
         if not isinstance(orig, unicode):
             orig = unicode(orig, 'utf-8', 'ignore')
