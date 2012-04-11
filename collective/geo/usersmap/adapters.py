@@ -34,6 +34,8 @@ class UserDescription(object):
     def _format_portrait(self, user_id):
         mtool = getToolByName(self.context, 'portal_membership')
         portrait = mtool.getPersonalPortrait(user_id)
+        if portrait.getId() == 'defaultUser.png':
+            return None
         return u"<img src='%s' class='map-portrait-photo' />" % \
                                             portrait.absolute_url()
 
@@ -52,6 +54,8 @@ class UserDescription(object):
             if data:
                 user_data.append(formatter(data))
             if prop == 'portrait':
-                user_data.append(self._format_portrait(user_id))
+                data = self._format_portrait(user_id)
+                if data:
+                    user_data.append(data)
 
         return u'\n'.join(user_data)
