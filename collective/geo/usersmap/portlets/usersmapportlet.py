@@ -38,7 +38,7 @@ class IUsersMapPortlet(IPortletDataProvider):
     text = schema.Text(
         title=PloneMessageFactory(u"Text"),
         description=PloneMessageFactory(u"The text to render"),
-        required=True)
+        required=False)
 
     height = schema.TextLine(
                     title=_(u"Height"),
@@ -120,12 +120,8 @@ class Renderer(base.Renderer):
         orig = self.data.text
         context = aq_inner(self.context)
         if not isinstance(orig, unicode):
-            # Apply a potentially lossy transformation, and hope we stored
-            # utf-8 text. There were bugs in earlier versions of this portlet
-            # which stored text directly as sent by the browser, which could
-            # be any encoding in the world.
             orig = unicode(orig, 'utf-8', 'ignore')
-            logger.warn("Static portlet at %s has stored non-unicode text. "
+            logger.warn("Users'map portlet at %s has stored non-unicode text. "
                         "Assuming utf-8 encoding." % context.absolute_url())
 
         # Portal transforms needs encoded strings

@@ -10,7 +10,8 @@
 
 <div tal:condition="view/data/omit_border"
     tal:attributes="class string:portlet portletUsersMap ${view/css_class}">
-    <div tal:content="structure view/transformed" />
+    <div tal:condition="view/transformed"
+        tal:content="structure view/transformed" />
 
     <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
     <div id="map" class="widget-cgmap"
@@ -26,7 +27,6 @@
             <!-- additional javascript --></script>
     <script type="text/javascript"
             src="++resource++geo.kml.javascripts/kml_openlayers.js"></script>
-
 </div>
 
 <dl tal:condition="not:view/data/omit_border"
@@ -47,7 +47,8 @@
     </dt>
 
     <dd class="portletItem odd">
-      <div tal:replace="structure view/transformed" />
+      <div tal:condition="view/transformed"
+           tal:replace="structure view/transformed" />
 
       <metal:use use-macro="context/@@collectivegeo-macros/openlayers" />
       <div id="map" class="widget-cgmap"
