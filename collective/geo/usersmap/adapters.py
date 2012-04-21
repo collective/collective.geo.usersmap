@@ -48,14 +48,15 @@ class UserDescription(object):
     def get_description(self, user_id, usr_data):
         user_data = []
         for prop in self.user_props:
-            data = usr_data.get(prop) or u''
-            formatter = getattr(self, '_format_%s' % prop,
-                                    self._default_formatter)
-            if data:
-                user_data.append(formatter(data))
             if prop == 'portrait':
                 data = self._format_portrait(user_id)
                 if data:
                     user_data.append(data)
+            else:
+                data = usr_data.get(prop) or u''
+                formatter = getattr(self, '_format_%s' % prop,
+                                    self._default_formatter)
+                if data:
+                    user_data.append(formatter(data))
 
         return u'\n'.join(user_data)
