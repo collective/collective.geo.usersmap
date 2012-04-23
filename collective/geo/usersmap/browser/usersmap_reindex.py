@@ -9,8 +9,11 @@ from ..interfaces import IUserDescription
 
 class Reindex(BrowserView):
 
+    @property
+    def userscoords(self):
+        return getUtility(IUsersCoordinates)
+
     def _reindex(self):
-        userscoords = getUtility(IUsersCoordinates)
         user_desc_adpt = IUserDescription(self.context)
         usr_props = ['fullname', 'location']
 
@@ -32,13 +35,25 @@ class Reindex(BrowserView):
             usr_description = user_desc_adpt.get_description(userid, data)
             usr_data['description'] = usr_description
 
-            if userid not in userscoords:
-                userscoords.add(userid, **usr_data)
+            if userid not in self.userscoords:
+                self.userscoords.add(userid, **usr_data)
             else:
-                userscoords.update(userid, **usr_data)
+                self.userscoords.update(userid, **usr_data)
 
         return len(users)
 
+    def _purge_orphan_users(self):
+        membership = getToolByName(self.context, 'portal_membership')
+        user_ids = membership.listMemberIds()
+        n_orphan = 0
+        for _id in self.userscoords:
+            if _id not in user_ids:
+                self.userscoords.delete(_id)
+                n_orphan += 1
+        return n_orphan
+
     def __call__(self):
         n_users = self._reindex()
-        return u'All done - %d users' % n_users
+        n_orphan = self._purge_orphan_users()
+        return u'All done - updated %d users and ' \
+            u'removed %d users' % (n_users, n_orphan)
