@@ -46,7 +46,7 @@ class Reindex(BrowserView):
         membership = getToolByName(self.context, 'portal_membership')
         user_ids = membership.listMemberIds()
         n_orphan = 0
-        for _id in self.userscoords:
+        for _id in list(self.userscoords.keys()):
             if _id not in user_ids:
                 self.userscoords.delete(_id)
                 n_orphan += 1
