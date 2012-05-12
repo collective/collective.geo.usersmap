@@ -1,3 +1,4 @@
+import time
 from zope.component import getUtility
 
 from Products.Five import BrowserView
@@ -39,7 +40,12 @@ class Reindex(BrowserView):
                 self.userscoords.add(userid, **usr_data)
             else:
                 self.userscoords.update(userid, **usr_data)
-
+            # It rasises geopy.GTooManyQueriesError when try to
+            # reindex many users. See:
+            # https://developers.google.com/maps/documentation/geocoding
+            # A little pause may prevents the error
+            # but increase the execution time :/
+            time.sleep(1)
         return len(users)
 
     def _purge_orphan_users(self):
@@ -53,7 +59,7 @@ class Reindex(BrowserView):
         return n_orphan
 
     def __call__(self):
-        n_users = self._reindex()
         n_orphan = self._purge_orphan_users()
+        n_users = self._reindex()
         return u'All done - updated %d users and ' \
             u'removed %d users' % (n_users, n_orphan)
