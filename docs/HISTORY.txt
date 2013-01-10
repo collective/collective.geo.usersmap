@@ -6,6 +6,6 @@ Changelog
 
 - Added support for Spanish localization [macagua]
 
-- Added support for Plone domain [macagua]
+- Added more improvements for i18n and support for Plone domain [macagua]
 
 - Initial release
