@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
-"POT-Creation-Date: 2012-03-25 19:38+0000\n"
+"POT-Creation-Date: 2013-01-10 14:39+0000\n"
 "PO-Revision-Date: 2012-03-25 17:50+0000\n"
 "Last-Translator: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
 "Language-Team: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
@@ -18,6 +18,10 @@ msgstr ""
 #: ../portlets/usersmapportlet.py:153
 msgid "Add users' map portlet"
 msgstr "Aggiungi una portlet con la mappa degli utenti"
+
+#: ../interfaces.py:25
+msgid "Add users' properties, one for line. They will be displayed in the map popups"
+msgstr ""
 
 #: ../portlets/usersmapportlet.py:166
 msgid "Edit users' map portlet"
@@ -39,6 +43,14 @@ msgstr "Descrizione della mappa"
 msgid "Map Title"
 msgstr "Titolo della mappa"
 
+#: ../interfaces.py:24
+msgid "Profile properties"
+msgstr ""
+
+#: ../interfaces.py:27
+msgid "Property"
+msgstr ""
+
 #: ../portlets/usersmapportlet.py:23
 msgid "This portlet display a map of portal user locations."
 msgstr "Questa portlet visualizza una mappa geografica degli utenti del portale"
@@ -47,7 +59,3 @@ msgstr "Questa portlet visualizza una mappa geografica degli utenti del portale"
 msgid "Users' Map Portlet"
 msgstr "Portlet Mappa degli utenti"
 
-#. Default: "Users' Map Portlet"
-#: ../profiles/default/portlets.xml
-msgid "description"
-msgstr "Portlet Mappa degli utenti"

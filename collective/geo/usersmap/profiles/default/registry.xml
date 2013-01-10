@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
-<registry>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone">
   <records
     interface="collective.geo.usersmap.interfaces.IUsersMapPreferences">
-    <value key="title">Users' Map</value>
-    <value key="description">This map displays locations of the portal users</value>
+    <value key="title" i18n:translate="">Users' Map</value>
+    <value key="description" i18n:translate="">This map displays locations of the portal users</value>
     <value key="user_properties">
         <element>description</element>
         <element>email</element>

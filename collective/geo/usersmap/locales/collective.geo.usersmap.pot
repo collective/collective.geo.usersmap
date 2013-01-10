@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-25 19:38+0000\n"
+"POT-Creation-Date: 2013-01-10 14:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 
 #: ../portlets/usersmapportlet.py:153
 msgid "Add users' map portlet"
+msgstr ""
+
+#: ../interfaces.py:25
+msgid "Add users' properties, one for line. They will be displayed in the map popups"
 msgstr ""
 
 #: ../portlets/usersmapportlet.py:166
@@ -41,16 +45,19 @@ msgstr ""
 msgid "Map Title"
 msgstr ""
 
+#: ../interfaces.py:24
+msgid "Profile properties"
+msgstr ""
+
+#: ../interfaces.py:27
+msgid "Property"
+msgstr ""
+
 #: ../portlets/usersmapportlet.py:23
 msgid "This portlet display a map of portal user locations."
 msgstr ""
 
 #: ../portlets/usersmapportlet.py:34
 msgid "Users' Map Portlet"
-msgstr ""
-
-#. Default: "Users' Map Portlet"
-#: ../profiles/default/portlets.xml
-msgid "description"
 msgstr ""
 

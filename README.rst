@@ -30,3 +30,9 @@ Dependencies
 
 * Plone >= 4.x
 * collective.geo.bundle
+
+Contributors
+============
+
+* Giorgio Borelli - gborelli
+* Leonardo J. Caballero G. - macagua

@@ -1,0 +1,33 @@
+# Giorgio Borelli <giorgio at giorgioborelli.it>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.geo.usersmap\n"
+"POT-Creation-Date: 2013-01-10 14:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
+"Language-Team: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.geo.usersmap\n"
+
+#: ../profiles/default/portlets.xml
+msgid "Display a map of portal user locations"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "This map displays locations of the portal users"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+msgid "Users' Map"
+msgstr ""
+
+#: ../profiles/default/portlets.xml
+msgid "Users' Map Portlet"
+msgstr "Portlet Mappa degli utenti"
+
