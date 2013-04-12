@@ -3,14 +3,17 @@ import os
 
 version = '1.0'
 
-setup(name='collective.geo.usersmap',
-      version=version,
-      description="Collective Geo Users' map",
-      long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
-      # Get more strings from
-      # http://pypi.python.org/pypi?:action=list_classifiers
-      classifiers=[
+setup(
+    name='collective.geo.usersmap',
+    version=version,
+    description="Collective Geo Users' map",
+    long_description=(
+        open("README.rst").read() + "\n" +
+        open(os.path.join("docs", "HISTORY.txt")).read()
+    ),
+    # Get more strings from
+    # http://pypi.python.org/pypi?:action=list_classifiers
+    classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
         "Framework :: Plone",
@@ -24,30 +27,30 @@ setup(name='collective.geo.usersmap',
         "Topic :: Internet",
         "Topic :: Scientific/Engineering :: GIS",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        ],
-      keywords='collective plone package geo-reference users map',
-      author='Giorgio Borelli',
-      author_email='giorgio@giorgioborelli.it',
-      url='https://github.com/collective/collective.geo.usersmap.git',
-      license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['collective', 'collective.geo'],
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=[
-          'setuptools',
-          'collective.geo.bundle',
-      ],
-      extras_require={
-        'tests': [
+    ],
+    keywords='collective plone package geo-reference users map',
+    author='Giorgio Borelli',
+    author_email='giorgio@giorgioborelli.it',
+    url='https://github.com/collective/collective.geo.usersmap.git',
+    license='GPL',
+    packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['collective', 'collective.geo'],
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[
+        'setuptools',
+        'collective.geo.bundle',
+    ],
+    extras_require={
+        'test': [
             'lxml',
             'plone.app.testing',
         ],
-      },
-      entry_points="""
-      # -*- Entry points: -*-
+    },
+    entry_points="""
+    # -*- Entry points: -*-
 
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-      )
+    [z3c.autoinclude.plugin]
+    target = plone
+    """,
+)
