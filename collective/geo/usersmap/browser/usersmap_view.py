@@ -7,6 +7,8 @@ from Products.Five import BrowserView
 from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 
+from collective.geo.mapwidget.browser import widget
+
 from ..interfaces import IUsersMapView
 from ..interfaces import IUsersMapPreferences
 from ..interfaces import IUsersCoordinates
@@ -17,6 +19,14 @@ DESC_TEMPLATE = """<![CDATA[<div
 class='user-description'
 dir="ltr">%s</div>]]>
 """
+
+
+class MapWidget(widget.MapWidget):
+    js = None
+
+    @property
+    def mapid(self):
+        return "usersmap-view"
 
 
 class UsersMapMixin(BrowserView):
@@ -42,6 +52,10 @@ class UsersMapView(UsersMapMixin):
     """Kml Users Map View
     """
     implements(IUsersMapView)
+
+    @property
+    def cgmap(self):
+        return MapWidget(self, self.request, self.context)
 
     def __init__(self, context, request):
         super(UsersMapView, self).__init__(context, request)

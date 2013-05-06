@@ -10,7 +10,8 @@
   <metal:main fill-slot="main"
        tal:define="kssClassesView context/@@kss_field_decorator_view;
                    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                   templateId template/getId" >
+                   templateId template/getId;
+                   cgmap view/cgmap" >
     <div>
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 

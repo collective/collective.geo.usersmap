@@ -1,1 +1,24 @@
-function(){var layer=new OpenLayers.Layer.GML('%s','%s'+'usersmap.kml',{format:OpenLayers.Format.KML,projection:cgmap.createDefaultOptions().displayProjection,formatOptions:{extractStyles:true,extractAttributes:true}});layer.events.on({"loadend":function(){layer.map.zoomToExtent(layer.getDataExtent());if(layer.features.length>1){layer.map.zoomTo(layer.map.getZoom())}else{layer.map.zoomTo(layer.map.getZoom()-2)}}});return layer}
+function(){
+    var layer=new OpenLayers.Layer.Vector('%s',{
+        protocol: new OpenLayers.Protocol.HTTP({
+            url: '%s'+'usersmap.kml',
+            format: new OpenLayers.Format.KML({
+                        extractStyles: true,
+                        extractAttributes: true})
+            }),
+            strategies: [new OpenLayers.Strategy.Fixed()],
+            projection:widget.map.displayProjection
+        });
+
+    layer.events.on({
+        "loadend":function(){
+            layer.map.zoomToExtent(layer.getDataExtent());
+            if(layer.features.length>1){
+                layer.map.zoomTo(layer.map.getZoom())
+            }else{
+                layer.map.zoomTo(layer.map.getZoom()-2)
+            }
+        }
+    });
+    return layer
+}

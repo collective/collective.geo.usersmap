@@ -3,9 +3,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       i18n:domain="plone"
-      tal:define="cgmap nocall:cgmap | nothing;
-                  mapwidgets view/@@collectivegeo-maps/mapwidgets;
-                  cgmap python:cgmap or mapwidgets[0];"
+      tal:define="cgmap nocall:view/cgmap"
       tal:omit-tag="">
 
 <div tal:condition="view/data/omit_border"

@@ -14,13 +14,22 @@ from plone.app.portlets.portlets import base
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from collective.geo.mapwidget.browser import widget
 
 from ..interfaces import IUsersMapView
-from collective.geo.usersmap import UsersmapMessageFactory as _
+from .. import UsersmapMessageFactory as _
 
 
 logger = logging.getLogger('collective.geo.usersmap')
 _DESCRIPTION = _(u"This portlet display a map of portal user locations.")
+
+
+class MapWidget(widget.MapWidget):
+    js = None
+
+    @property
+    def mapid(self):
+        return "usersmap-portlet"
 
 
 class IUsersMapPortlet(IPortletDataProvider):
@@ -28,12 +37,11 @@ class IUsersMapPortlet(IPortletDataProvider):
     """
 
     header = schema.TextLine(
-                    title=PloneMessageFactory(u"Portlet header"),
-                    description=PloneMessageFactory(
-                                u"Title of the rendered portlet"),
-                    default=_(u"Users' Map Portlet"),
-                    required=True,
-                )
+        title=PloneMessageFactory(u"Portlet header"),
+        description=PloneMessageFactory(u"Title of the rendered portlet"),
+        default=_(u"Users' Map Portlet"),
+        required=True,
+    )
 
     text = schema.Text(
         title=PloneMessageFactory(u"Text"),
@@ -41,19 +49,20 @@ class IUsersMapPortlet(IPortletDataProvider):
         required=False)
 
     height = schema.TextLine(
-                    title=_(u"Height"),
-                    description=_(u"Height for maps, specified as an absolute "
-                            "(like '450px' or '15em'), or relative (like "
-                            "'100%') size."),
-                    required=True,
-                    default=u"200px",
-                )
+        title=_(u"Height"),
+        description=_(
+            u"Height for maps, specified as an absolute "
+            u"(like '450px' or '15em'), or relative (like "
+            u"'100%') size."),
+        required=True,
+        default=u"200px",
+    )
 
     omit_border = schema.Bool(
         title=PloneMessageFactory(u"Omit portlet border"),
         description=PloneMessageFactory(
-                    u"Tick this box if you want to render the text above "
-                     "without the standard header, border or footer."),
+            u"Tick this box if you want to render the text above "
+            u"without the standard header, border or footer."),
         required=True,
         default=False)
 
@@ -64,8 +73,9 @@ class IUsersMapPortlet(IPortletDataProvider):
 
     more_url = schema.ASCIILine(
         title=PloneMessageFactory(u"Details link"),
-        description=PloneMessageFactory(u"If given, the header and footer "
-                      "will link to this URL."),
+        description=PloneMessageFactory(
+            u"If given, the header and footer "
+            u"will link to this URL."),
         required=False)
 
 
@@ -82,7 +92,7 @@ class Assignment(base.Assignment):
     more_url = ''
 
     def __init__(self, header=u'', text=u'', height=u'200px',
-                    omit_border=False, footer=u'', more_url=''):
+            omit_border=False, footer=u'', more_url=''):
         self.header = header
         self.text = text
         self.height = height
@@ -101,6 +111,10 @@ class Renderer(base.Renderer):
     implements(IUsersMapView)
 
     render = ViewPageTemplateFile('usersmapportlet.pt')
+
+    @property
+    def cgmap(self):
+        return MapWidget(self, self.request, self.context)
 
     def css_class(self):
         header = self.data.header

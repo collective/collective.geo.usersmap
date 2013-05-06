@@ -4,8 +4,14 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
-- Added support for Spanish localization [macagua]
+- Added specific MapWidget to users'map in order to avoid duplicated map ids
+  [gborelli]
 
-- Added more improvements for i18n and support for Plone domain [macagua]
+- Changed javascript to support Openlayers 2.12
+  [gborelli]
 
-- Initial release
+- Added support for Spanish localization
+  [macagua]
+
+- Added more improvements for i18n and support for Plone domain
+  [macagua]
