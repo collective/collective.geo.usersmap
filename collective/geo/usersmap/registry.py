@@ -7,7 +7,7 @@ from BTrees.OOBTree import OOBTree
 from zope.interface import implements
 from zope.component import getUtility
 
-from collective.geo.geographer.interfaces import IGeoCoder
+from collective.geo.mapwidget.interfaces import IGeoCoder
 from collective.geo.usersmap.interfaces import IUsersCoordinates
 from collective.geo.usersmap.interfaces import IUserData
 
@@ -20,15 +20,15 @@ class UserData(PersistentMapping):
     """
     implements(IUserData)
 
-    def __init__(self, userid, fullname,
-                    description, location, coordinates):
+    def __init__(self, userid, fullname, description, location, coordinates):
         super(UserData, self).__init__()
-        self.update({'userid': userid,
-                'fullname': fullname,
-                'description': description,
-                'location': location,
-                'coordinates': coordinates,
-            })
+        self.update({
+            'userid': userid,
+            'fullname': fullname,
+            'description': description,
+            'location': location,
+            'coordinates': coordinates,
+        })
 
 
 class UsersCoordinates(SimpleItem):

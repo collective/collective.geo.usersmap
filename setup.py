@@ -40,6 +40,7 @@ setup(
     install_requires=[
         'setuptools',
         'collective.geo.bundle',
+        'collective.geo.mapwidget > 1.6'
     ],
     extras_require={
         'test': [

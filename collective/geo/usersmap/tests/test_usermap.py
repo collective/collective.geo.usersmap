@@ -13,7 +13,7 @@ from Products.CMFPlone.utils import getToolByName
 from plone.app.users.browser.interfaces import IAccountPanelForm
 from plone.app.controlpanel.events import ConfigurationChangedEvent
 
-from collective.geo.geographer.interfaces import IGeoCoder
+from collective.geo.mapwidget.interfaces import IGeoCoder
 
 
 from layers import INTEGRATION_TESTING

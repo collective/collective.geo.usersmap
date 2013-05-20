@@ -3,7 +3,7 @@
 
   <utility
     factory='.adapters.DummyGeoCoder'
-    provides="collective.geo.geographer.interfaces.IGeoCoder"
+    provides="collective.geo.mapwidget.interfaces.IGeoCoder"
   />
 
 </configure>

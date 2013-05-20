@@ -4,6 +4,9 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
+- Update geocoder for c.geo.mapwidget > 1.6
+  [gborelli]
+
 - Added specific MapWidget to users'map in order to avoid duplicated map ids
   [gborelli]
 
