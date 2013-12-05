@@ -39,6 +39,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
+        'geopy>=0.96.2',
         'collective.geo.bundle',
         'collective.geo.mapwidget > 1.6'
     ],

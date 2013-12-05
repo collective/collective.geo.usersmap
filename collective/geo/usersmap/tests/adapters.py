@@ -1,4 +1,4 @@
-from geopy.geocoders.google import GQueryError
+from geopy.exc import GeocoderQueryError
 from collective.geo.mapwidget.utils import GeoCoderUtility
 
 
@@ -31,4 +31,4 @@ class DummyGeoCoder(GeoCoderUtility):
         for item in DUMMY_DATA:
             if address == item['address']:
                 return item['output']
-        raise GQueryError
+        raise GeocoderQueryError

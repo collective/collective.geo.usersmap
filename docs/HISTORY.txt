@@ -4,6 +4,9 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
+- fix geopy import error
+  [gborelli]
+
 - Update geocoder for c.geo.mapwidget > 1.6
   [gborelli]
 

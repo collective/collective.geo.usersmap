@@ -1,5 +1,4 @@
-# from persistent import Persistent
-from geopy.geocoders.google import GQueryError
+from geopy.exc import GeocoderQueryError
 from persistent.mapping import PersistentMapping
 from OFS.SimpleItem import SimpleItem
 from BTrees.OOBTree import OOBTree
@@ -115,7 +114,7 @@ class UsersCoordinates(SimpleItem):
         """
         try:
             geo_data = self.geocoder.retrieve(location)
-        except GQueryError:
+        except GeocoderQueryError:
             return None
 
         if not geo_data:
