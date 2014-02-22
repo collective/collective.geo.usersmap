@@ -16,7 +16,7 @@ class UserDescription(object):
 
     def _decode_str(self, data):
         if isinstance(data, basestring) and \
-                            not isinstance(data, unicode):
+                not isinstance(data, unicode):
             data = data.decode('utf8')
         return data
 
@@ -36,8 +36,8 @@ class UserDescription(object):
         portrait = mtool.getPersonalPortrait(user_id)
         if portrait.getId() == 'defaultUser.png':
             return None
-        return u"<img src='%s' class='map-portrait-photo' />" % \
-                                            portrait.absolute_url()
+        return u"<img src='%s' class='map-portrait-photo' />".format(
+            portrait.absolute_url())
 
     @property
     def user_props(self):

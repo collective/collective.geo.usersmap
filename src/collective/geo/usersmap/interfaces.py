@@ -22,8 +22,10 @@ class IUsersMapPreferences(Interface):
     description = schema.Text(title=_(u"Map Description"))
     user_properties = schema.List(
         title=_(u'Profile properties'),
-        description=_(u"Add users' properties, one for line. " \
-                    "They will be displayed in the map popups"),
+        description=_(
+            u"Add users' properties, one for line. "
+            u"They will be displayed in the map popups"
+        ),
         value_type=schema.TextLine(title=_(u"Property")),
         required=False,
     )

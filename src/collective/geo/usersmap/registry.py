@@ -80,8 +80,10 @@ class UsersCoordinates(SimpleItem):
         if not coordinates:
             return None
 
-        usr_data = UserData(userid, fullname,
-                        description, location, coordinates)
+        usr_data = UserData(
+            userid, fullname,
+            description, location, coordinates
+        )
         self.records[userid] = usr_data
 
     def update(self, userid, location, fullname, description):

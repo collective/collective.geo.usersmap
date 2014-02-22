@@ -29,6 +29,6 @@
       for="*"
       provides=".interfaces.IUserDescription"
       factory=".adapters.UserDescription"
-  />
+      />
 
 </configure>

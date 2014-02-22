@@ -91,10 +91,11 @@ class UsersMapKMLView(UsersMapMixin):
         for user_id in self.user_coords_tool:
             member_data = self.user_coords_tool.get(user_id)
             latitude, longitude = coordinate_transform(
-                                        member_data.get('coordinates'),
-                                        unique_coordinate)
-            user = {'location':
-                        "%r,%r,0.000000" % (longitude, latitude)}
+                member_data.get('coordinates'),
+                unique_coordinate)
+            user = {
+                'location': "%r,%r,0.000000" % (longitude, latitude)
+            }
 
             for prop in self._user_properties:
                 if prop == 'description':

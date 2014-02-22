@@ -12,5 +12,6 @@
         editview=".usersmapportlet.EditForm"
         view_permission="zope2.View"
         edit_permission="zope2.View"
-    />
+        />
+
 </configure>

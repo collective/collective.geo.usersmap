@@ -92,7 +92,7 @@ class Assignment(base.Assignment):
     more_url = ''
 
     def __init__(self, header=u'', text=u'', height=u'200px',
-            omit_border=False, footer=u'', more_url=''):
+                 omit_border=False, footer=u'', more_url=''):
         self.header = header
         self.text = text
         self.height = height

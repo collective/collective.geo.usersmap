@@ -11,8 +11,6 @@ setup(
         open("README.rst").read() + "\n" +
         open(os.path.join("docs", "HISTORY.txt")).read()
     ),
-    # Get more strings from
-    # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
@@ -33,14 +31,14 @@ setup(
     author_email='giorgio@giorgioborelli.it',
     url='https://github.com/collective/collective.geo.usersmap.git',
     license='GPL',
-    packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     namespace_packages=['collective', 'collective.geo'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         'setuptools',
         'geopy>=0.98',
-        'collective.geo.bundle',
         'collective.geo.mapwidget > 2.0'
     ],
     extras_require={

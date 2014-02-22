@@ -15,7 +15,7 @@ def coordinate_transform(coordinate, unique_coordinates):
     if (not isinstance(coordinate, (tuple, list)) or
         len(coordinate) != 2 or
         not isinstance(coordinate[0], float) or
-        not isinstance(coordinate[1], float)):
+            not isinstance(coordinate[1], float)):
         return (None, None)
 
     step = 0.01  # distance for a step in decimal degrees
@@ -39,7 +39,7 @@ def coordinate_transform(coordinate, unique_coordinates):
                              coord[1]),
         lambda coord, start:(coord[0],
                              coord[1] - (start + 2) * step),
-        ]
+    ]
 
     unique = coordinate
     start = 0
