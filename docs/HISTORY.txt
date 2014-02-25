@@ -4,6 +4,9 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
+- Remove c.geo.bundle dependency
+  [gborelli]
+
 - fix geopy import error
   [gborelli]
 

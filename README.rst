@@ -28,8 +28,8 @@ You can set just one "usersmap portlet" per page.
 Dependencies
 ============
 
-* Plone >= 4.x
-* collective.geo.bundle
+* Plone >= 4.2
+* collective.geo.mapwidget > 2.0
 
 Contributors
 ============

@@ -8,7 +8,7 @@
   <i18n:registerTranslations directory="locales" />
 
   <include package="plone.browserlayer" />
-  <include package="collective.geo.bundle" />
+  <include package="collective.geo.mapwidget" />
   <include package=".browser" />
   <include package=".portlets" />
 
