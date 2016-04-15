@@ -11,7 +11,7 @@ from Products.CMFCore.utils import getToolByName
 from plone.portlet.static import PloneMessageFactory
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.app.portlets.portlets import base
-from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
+from plone.app.z3cform.wysiwyg.widget import WysiwygWidget
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from collective.geo.mapwidget.browser import widget
@@ -162,7 +162,7 @@ class AddForm(base.AddForm):
     """Users' map portlet add form
     """
     form_fields = form.Fields(IUsersMapPortlet)
-    form_fields['text'].custom_widget = WYSIWYGWidget
+    form_fields['text'].custom_widget = WysiwygWidget
 
     label = _(u"Add users' map portlet")
     description = _DESCRIPTION
@@ -175,7 +175,7 @@ class EditForm(base.EditForm):
     """Users' map portlet edit form
     """
     form_fields = form.Fields(IUsersMapPortlet)
-    form_fields['text'].custom_widget = WYSIWYGWidget
+    form_fields['text'].custom_widget = WysiwygWidget
 
     label = _(u"Edit users' map portlet")
     description = _DESCRIPTION

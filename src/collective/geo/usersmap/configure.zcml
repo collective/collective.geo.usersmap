@@ -21,7 +21,7 @@
       />
 
   <subscriber
-      for="plone.app.controlpanel.interfaces.IConfigurationChangedEvent"
+      for="Products.CMFPlone.interfaces.IConfigurationChangedEvent"
       handler=".subscribers.notify_user_preferences_changed"
       />
 

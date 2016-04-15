@@ -4,6 +4,12 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
+- Changed IConfigurationChangedEvent subscriptions to be plone5 compatible
+  [pbauer]
+
+- Changed WYSIWYGWidget imports to new WysiwygWidget
+  [pbauer]
+
 - Remove c.geo.bundle dependency
   [gborelli]
 
