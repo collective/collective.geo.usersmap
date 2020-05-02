@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.geo.usersmap\n"
-"POT-Creation-Date: 2013-01-10 14:39+0000\n"
+"POT-Creation-Date: 2020-05-01 22:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
 "Language-Team: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
@@ -30,4 +30,3 @@ msgstr ""
 #: ../profiles/default/portlets.xml
 msgid "Users' Map Portlet"
 msgstr "Portlet Mappa degli utenti"
-

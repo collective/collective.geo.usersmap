@@ -4,6 +4,9 @@ Changelog
 1.0dev (unreleased)
 -------------------
 
+- Updated gettext files support
+  [macagua]
+
 - Changed IConfigurationChangedEvent subscriptions to be plone5 compatible
   [pbauer]
 

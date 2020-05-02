@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
-"POT-Creation-Date: 2013-01-10 14:39+0000\n"
+"POT-Creation-Date: 2020-05-01 22:30+0000\n"
 "PO-Revision-Date: 2012-03-25 17:50+0000\n"
 "Last-Translator: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
 "Language-Team: Giorgio Borelli <giorgio at giorgioborelli.it>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.geo.usersmap\n"
 
-#: ../portlets/usersmapportlet.py:153
+#: ../portlets/usersmapportlet.py:167
 msgid "Add users' map portlet"
 msgstr "Aggiungi una portlet con la mappa degli utenti"
 
@@ -23,15 +23,23 @@ msgstr "Aggiungi una portlet con la mappa degli utenti"
 msgid "Add users' properties, one for line. They will be displayed in the map popups"
 msgstr ""
 
-#: ../portlets/usersmapportlet.py:166
+#: ../configure.zcml:21
+msgid "Collective Geo Users' map"
+msgstr ""
+
+#: ../portlets/usersmapportlet.py:180
 msgid "Edit users' map portlet"
 msgstr "Modifica la portlet della mappa utenti"
 
-#: ../portlets/usersmapportlet.py:44
+#: ../configure.zcml:21
+msgid "Extension profile for Collective Geo Users' map"
+msgstr ""
+
+#: ../portlets/usersmapportlet.py:52
 msgid "Height"
 msgstr "Altezza"
 
-#: ../portlets/usersmapportlet.py:45
+#: ../portlets/usersmapportlet.py:53
 msgid "Height for maps, specified as an absolute (like '450px' or '15em'), or relative (like '100%') size."
 msgstr "Altezza della mappa, puoi specificare una dimensione assoluta (es.: '450px' o '15em') o relativa (es.: '100%')."
 
@@ -47,15 +55,14 @@ msgstr "Titolo della mappa"
 msgid "Profile properties"
 msgstr ""
 
-#: ../interfaces.py:27
+#: ../interfaces.py:29
 msgid "Property"
 msgstr ""
 
-#: ../portlets/usersmapportlet.py:23
+#: ../portlets/usersmapportlet.py:24
 msgid "This portlet display a map of portal user locations."
 msgstr "Questa portlet visualizza una mappa geografica degli utenti del portale"
 
-#: ../portlets/usersmapportlet.py:34
+#: ../portlets/usersmapportlet.py:42
 msgid "Users' Map Portlet"
 msgstr "Portlet Mappa degli utenti"
-
