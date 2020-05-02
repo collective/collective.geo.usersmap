@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[plone-collective.collective-geo-usersmap-pot]
+file_filter = src/collective/geo/usersmap/locales/<lang>/LC_MESSAGES/collective.geo.usersmap.po
+minimum_perc = 0
+source_file = src/collective/geo/usersmap/locales/collective.geo.usersmap.pot
+source_lang = en
+type = PO
+
