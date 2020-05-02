@@ -2,7 +2,7 @@ Introduction
 ============
 
 ``collective.geo.usersmap`` provides a map showing the registered users of 
-the portal by the location attributes of each user.
+the portal by the location attributes of each user using `collective.geo`_.
 
 How it works
 ============
@@ -102,6 +102,7 @@ The project is licensed under the GPLv2.
 
 
 .. _Plone: https://plone.org/
+.. _collective.geo: https://pypi.org/project/collective.geo.bundle
 .. _collective.geo.mapwidget: https://pypi.org/project/collective.geo.mapwidget
 .. _`opening a ticket`: https://github.com/collective/collective.geo.bundle/issues
 .. _documentation: https://docs.plone.org/manage/installing/installing_addons.html
